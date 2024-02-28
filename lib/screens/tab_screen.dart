@@ -42,6 +42,13 @@ class _TabScreenState extends State<TabsScreen> {
     }
   }
 
+  void _setScreen(String identifier) {
+    if (identifier == 'filters') {
+    } else {
+      Navigator.of(context).pop();
+    }
+  }
+
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex = index;
@@ -67,7 +74,9 @@ class _TabScreenState extends State<TabsScreen> {
         title: Text(activePageTile),
       ),
       body: activePage,
-      drawer: const MainDrawer(),
+      drawer: MainDrawer(
+        onSelectScreen: _setScreen,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         currentIndex: _selectedPageIndex,
